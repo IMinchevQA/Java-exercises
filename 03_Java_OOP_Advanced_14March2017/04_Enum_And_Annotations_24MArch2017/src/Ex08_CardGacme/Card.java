@@ -1,0 +1,72 @@
+package Ex08_CardGacme;
+
+public class Card implements Comparable<Card> {
+    private CardRanks rank;
+    private CardSuits suit;
+    private int cardPower;
+
+
+
+    public Card(CardRanks rank, CardSuits suit) {
+        this.rank = rank;
+        this.suit = suit;
+        this.cardPower = this.calculatePower();
+
+    }
+
+    public int getCardPower() {
+        return this.cardPower;
+    }
+
+    public CardSuits getSuit() {
+        return this.suit;
+    }
+
+    public CardRanks getRank() {
+        return this.rank;
+    }
+
+    private int calculatePower() {
+        int valueCardRank = Enum.valueOf(CardRanks.class, this.getRank().name()).getPower();
+        int valueCardSuit = Enum.valueOf(CardSuits.class, this.getSuit().name()).getSuitPower();
+        return valueCardRank + valueCardSuit;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        if (other == null || this.getClass() != other.getClass()) {
+            return false;
+        }
+
+        Card otherCard = (Card) other;
+
+        if (this.getRank() != otherCard.getRank() || this.getSuit() != this.getSuit()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = this.rank.hashCode();
+        result = 31 * result + this.suit.hashCode();
+        return result;
+    }
+
+
+    @Override
+    public String toString() {
+        return String.format("Card name: %s of %s; Card power: %s", this.getRank().name(), this.getSuit().name(), this.calculatePower());
+    }
+
+    @Override
+    public int compareTo(Card other) {
+        return Integer.compare(this.getCardPower(), other.getCardPower());
+    }
+}
+
