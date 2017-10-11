@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - @localhost" uuid="93d400c6-900d-469c-a4b7-8919f4894c09">
+    <database-info product="MySQL" version="5.7.19-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.40 ( Revision: 402933ef52cad9aa82624e80acbea46e3a701ce6 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+      <schema id="1" name="blogtest-12sept2017">
+        <visible>1</visible>
+      </schema>
+      <schema id="2" name="information_schema"/>
+      <schema id="3" name="minions"/>
+      <schema id="4" name="mysql"/>
+      <schema id="5" name="performance_schema"/>
+      <schema id="6" name="sys"/>
+      <schema id="7" name="world">
+        <visible>1</visible>
+      </schema>
+      <schema id="8" name="diablo">
+        <visible>1</visible>
+      </schema>
+      <table id="9" parent="1" name="posts">
+        <comment>This table will keeep the data about posts!</comment>
+      </table>
+      <table id="10" parent="1" name="users">
+        <comment>This table will contain information about users!</comment>
+      </table>
+      <table id="11" parent="7" name="city"/>
+      <table id="12" parent="7" name="country"/>
+      <table id="13" parent="7" name="countrylanguage"/>
+      <table id="14" parent="8" name="characters"/>
+      <table id="15" parent="8" name="game_type_forbidden_items"/>
+      <table id="16" parent="8" name="game_types"/>
+      <table id="17" parent="8" name="games"/>
+      <table id="18" parent="8" name="item_types"/>
+      <table id="19" parent="8" name="items"/>
+      <table id="20" parent="8" name="statistics"/>
+      <table id="21" parent="8" name="user_game_items"/>
+      <table id="22" parent="8" name="users"/>
+      <table id="23" parent="8" name="users_games"/>
+      <column id="24" parent="9" name="post_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="25" parent="9" name="user_id">
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="26" parent="9" name="title">
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="27" parent="9" name="content">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="28" parent="9" name="date">
+        <data-type>date|0</data-type>
+      </column>
+      <index id="29" parent="9" name="post_users_fk_idx">
+        <columns>user_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="30" parent="9" name="PRIMARY">
+        <columns>post_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="31" parent="9" name="post_users_fk">
+        <columns>user_id</columns>
+        <ref-key>~.users.PRIMARY</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="32" parent="10" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="33" parent="10" name="username">
+        <mandatory>1</mandatory>
+        <data-type>varchar(15)|0</data-type>
+      </column>
+      <column id="34" parent="10" name="password">
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="35" parent="10" name="fullname">
+        <data-type>varchar(30)|0</data-type>
+      </column>
+      <index id="36" parent="10" name="username_UNIQUE">
+        <columns>username</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="37" parent="10" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="38" parent="10" name="username_UNIQUE">
+        <columns>username</columns>
+        <underlying-index>username_UNIQUE</underlying-index>
+      </key>
+      <column id="39" parent="11" name="ID">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="40" parent="11" name="Name">
+        <mandatory>1</mandatory>
+        <data-type>char(35)|0</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="41" parent="11" name="CountryCode">
+        <mandatory>1</mandatory>
+        <data-type>char(3)|0</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="42" parent="11" name="District">
+        <mandatory>1</mandatory>
+        <data-type>char(20)|0</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="43" parent="11" name="Population">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <index id="44" parent="11" name="CountryCode">
+        <columns>CountryCode</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="45" parent="11" name="PRIMARY">
+        <columns>ID</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="46" parent="11" name="city_ibfk_1">
+        <columns>CountryCode</columns>
+        <ref-key>~.country.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="47" parent="12" name="Code">
+        <mandatory>1</mandatory>
+        <data-type>char(3)|0</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="48" parent="12" name="Name">
+        <mandatory>1</mandatory>
+        <data-type>char(52)|0</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="49" parent="12" name="Continent">
+        <mandatory>1</mandatory>
+        <data-type>enum(&apos;Asia&apos;, &apos;Europe&apos;, &apos;North America&apos;, &apos;Africa&apos;, &apos;Oceania&apos;, &apos;Antarctica&apos;, &apos;South America&apos;)|0</data-type>
+        <default-expression>&apos;Asia&apos;</default-expression>
+      </column>
+      <column id="50" parent="12" name="Region">
+        <mandatory>1</mandatory>
+        <data-type>char(26)|0</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="51" parent="12" name="SurfaceArea">
+        <mandatory>1</mandatory>
+        <data-type>float(10,2)|0</data-type>
+        <default-expression>&apos;0.00&apos;</default-expression>
+      </column>
+      <column id="52" parent="12" name="IndepYear">
+        <data-type>smallint(6)|0</data-type>
+      </column>
+      <column id="53" parent="12" name="Population">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="54" parent="12" name="LifeExpectancy">
+        <data-type>float(3,1)|0</data-type>
+      </column>
+      <column id="55" parent="12" name="GNP">
+        <data-type>float(10,2)|0</data-type>
+      </column>
+      <column id="56" parent="12" name="GNPOld">
+        <data-type>float(10,2)|0</data-type>
+      </column>
+      <column id="57" parent="12" name="LocalName">
+        <mandatory>1</mandatory>
+        <data-type>char(45)|0</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="58" parent="12" name="GovernmentForm">
+        <mandatory>1</mandatory>
+        <data-type>char(45)|0</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="59" parent="12" name="HeadOfState">
+        <data-type>char(60)|0</data-type>
+      </column>
+      <column id="60" parent="12" name="Capital">
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="61" parent="12" name="Code2">
+        <mandatory>1</mandatory>
+        <data-type>char(2)|0</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <key id="62" parent="12" name="PRIMARY">
+        <columns>Code</columns>
+        <primary>1</primary>
+      </key>
+      <column id="63" parent="13" name="CountryCode">
+        <mandatory>1</mandatory>
+        <data-type>char(3)|0</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="64" parent="13" name="Language">
+        <mandatory>1</mandatory>
+        <data-type>char(30)|0</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="65" parent="13" name="IsOfficial">
+        <mandatory>1</mandatory>
+        <data-type>enum(&apos;T&apos;, &apos;F&apos;)|0</data-type>
+        <default-expression>&apos;F&apos;</default-expression>
+      </column>
+      <column id="66" parent="13" name="Percentage">
+        <mandatory>1</mandatory>
+        <data-type>float(4,1)|0</data-type>
+        <default-expression>&apos;0.0&apos;</default-expression>
+      </column>
+      <index id="67" parent="13" name="CountryCode">
+        <columns>CountryCode</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="68" parent="13" name="PRIMARY">
+        <columns>CountryCode
+Language</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="69" parent="13" name="countryLanguage_ibfk_1">
+        <columns>CountryCode</columns>
+        <ref-key>~.country.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="70" parent="14" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="71" parent="14" name="name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="72" parent="14" name="statistics_id">
+        <data-type>int(10)|0</data-type>
+      </column>
+      <index id="73" parent="14" name="fk_characters_statistics">
+        <columns>statistics_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="74" parent="14" name="PK_Characters">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="75" parent="14" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="76" parent="14" name="PK_Characters">
+        <columns>id</columns>
+        <underlying-index>PK_Characters</underlying-index>
+      </key>
+      <foreign-key id="77" parent="14" name="fk_characters_statistics">
+        <columns>statistics_id</columns>
+        <ref-key>~.statistics.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="78" parent="15" name="item_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="79" parent="15" name="game_type_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <index id="80" parent="15" name="fk_game_type_forbidden_game_types">
+        <columns>game_type_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="81" parent="15" name="PK_GameTypeForbiddenItems">
+        <columns>item_id
+game_type_id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="82" parent="15" name="PRIMARY">
+        <columns>item_id
+game_type_id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="83" parent="15" name="PK_GameTypeForbiddenItems">
+        <columns>item_id
+game_type_id</columns>
+        <underlying-index>PK_GameTypeForbiddenItems</underlying-index>
+      </key>
+      <foreign-key id="84" parent="15" name="fk_game_type_forbidden_items">
+        <columns>item_id</columns>
+        <ref-key>~.items.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="85" parent="15" name="fk_game_type_forbidden_game_types">
+        <columns>game_type_id</columns>
+        <ref-key>~.game_types.PK_GameTypes</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="86" parent="16" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="87" parent="16" name="name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="88" parent="16" name="bonus_stats_id">
+        <data-type>int(10)|0</data-type>
+      </column>
+      <index id="89" parent="16" name="fk_game_types_statistics">
+        <columns>bonus_stats_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="90" parent="16" name="PK_GameTypes">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="91" parent="16" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="92" parent="16" name="PK_GameTypes">
+        <columns>id</columns>
+        <underlying-index>PK_GameTypes</underlying-index>
+      </key>
+      <foreign-key id="93" parent="16" name="fk_game_types_statistics">
+        <columns>bonus_stats_id</columns>
+        <ref-key>~.statistics.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="94" parent="17" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="95" parent="17" name="name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="96" parent="17" name="start">
+        <mandatory>1</mandatory>
+        <data-type>timestamp(6)|0</data-type>
+        <default-expression>CURRENT_TIMESTAMP(6)</default-expression>
+      </column>
+      <column id="97" parent="17" name="duration">
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="98" parent="17" name="game_type_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="99" parent="17" name="is_finished">
+        <mandatory>1</mandatory>
+        <data-type>bit(1)|0</data-type>
+        <default-expression>b&apos;0&apos;</default-expression>
+      </column>
+      <index id="100" parent="17" name="fk_games_game_types">
+        <columns>game_type_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="101" parent="17" name="PK_Games">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="102" parent="17" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="103" parent="17" name="PK_Games">
+        <columns>id</columns>
+        <underlying-index>PK_Games</underlying-index>
+      </key>
+      <foreign-key id="104" parent="17" name="fk_games_game_types">
+        <columns>game_type_id</columns>
+        <ref-key>~.game_types.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="105" parent="18" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="106" parent="18" name="name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <index id="107" parent="18" name="PK_ItemTypes">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="108" parent="18" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="109" parent="18" name="PK_ItemTypes">
+        <columns>id</columns>
+        <underlying-index>PK_ItemTypes</underlying-index>
+      </key>
+      <column id="110" parent="19" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="111" parent="19" name="name">
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="112" parent="19" name="item_type_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="113" parent="19" name="statistics_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="114" parent="19" name="price">
+        <mandatory>1</mandatory>
+        <data-type>decimal(19,4)|0</data-type>
+      </column>
+      <column id="115" parent="19" name="min_level">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <index id="116" parent="19" name="fk_items_item_type">
+        <columns>item_type_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="117" parent="19" name="fk_items_statistics">
+        <columns>statistics_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="118" parent="19" name="PK_Items">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="119" parent="19" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="120" parent="19" name="PK_Items">
+        <columns>id</columns>
+        <underlying-index>PK_Items</underlying-index>
+      </key>
+      <foreign-key id="121" parent="19" name="fk_items_item_type">
+        <columns>item_type_id</columns>
+        <ref-key>~.item_types.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="122" parent="19" name="fk_items_statistics">
+        <columns>statistics_id</columns>
+        <ref-key>~.statistics.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="123" parent="20" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="124" parent="20" name="strength">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="125" parent="20" name="defence">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="126" parent="20" name="mind">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="127" parent="20" name="speed">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="128" parent="20" name="luck">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <index id="129" parent="20" name="PK_Statistics">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="130" parent="20" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="131" parent="20" name="PK_Statistics">
+        <columns>id</columns>
+        <underlying-index>PK_Statistics</underlying-index>
+      </key>
+      <column id="132" parent="21" name="item_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="133" parent="21" name="user_game_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <index id="134" parent="21" name="fk_user_game_Items_user_games">
+        <columns>user_game_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="135" parent="21" name="PK_UserGameItems">
+        <columns>item_id
+user_game_id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="136" parent="21" name="PRIMARY">
+        <columns>item_id
+user_game_id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="137" parent="21" name="PK_UserGameItems">
+        <columns>item_id
+user_game_id</columns>
+        <underlying-index>PK_UserGameItems</underlying-index>
+      </key>
+      <foreign-key id="138" parent="21" name="fk_user_game_Items_items">
+        <columns>item_id</columns>
+        <ref-key>~.items.PK_Items</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="139" parent="21" name="fk_user_game_Items_user_games">
+        <columns>user_game_id</columns>
+        <ref-key>~.users_games.PK_UsersGames_1</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="140" parent="22" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="141" parent="22" name="user_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="142" parent="22" name="first_name">
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="143" parent="22" name="last_name">
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="144" parent="22" name="email">
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="145" parent="22" name="registration_date">
+        <mandatory>1</mandatory>
+        <data-type>timestamp(6)|0</data-type>
+        <default-expression>CURRENT_TIMESTAMP(6)</default-expression>
+      </column>
+      <column id="146" parent="22" name="is_deleted">
+        <mandatory>1</mandatory>
+        <data-type>bit(1)|0</data-type>
+        <default-expression>b&apos;0&apos;</default-expression>
+      </column>
+      <column id="147" parent="22" name="ip_address">
+        <mandatory>1</mandatory>
+        <data-type>varchar(15)|0</data-type>
+      </column>
+      <index id="148" parent="22" name="PK_Users">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="149" parent="22" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="150" parent="22" name="PK_Users">
+        <columns>id</columns>
+        <underlying-index>PK_Users</underlying-index>
+      </key>
+      <column id="151" parent="23" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="152" parent="23" name="game_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="153" parent="23" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="154" parent="23" name="character_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="155" parent="23" name="level">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <column id="156" parent="23" name="joined_on">
+        <mandatory>1</mandatory>
+        <data-type>timestamp(6)|0</data-type>
+        <default-expression>CURRENT_TIMESTAMP(6)</default-expression>
+      </column>
+      <column id="157" parent="23" name="cash">
+        <mandatory>1</mandatory>
+        <data-type>decimal(19,4)|0</data-type>
+        <default-expression>&apos;1000.0000&apos;</default-expression>
+      </column>
+      <index id="158" parent="23" name="FK_UsersGames_Characters">
+        <columns>character_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="159" parent="23" name="FK_UsersGames_Games">
+        <columns>game_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="160" parent="23" name="FK_UsersGames_Users1">
+        <columns>user_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="161" parent="23" name="PK_UsersGames_1">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="162" parent="23" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="163" parent="23" name="PK_UsersGames_1">
+        <columns>id</columns>
+        <underlying-index>PK_UsersGames_1</underlying-index>
+      </key>
+      <foreign-key id="164" parent="23" name="fk_user_games_games">
+        <columns>game_id</columns>
+        <ref-key>~.games.PK_Games</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="165" parent="23" name="fk_user_games_users">
+        <columns>user_id</columns>
+        <ref-key>~.users.PK_Users</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="166" parent="23" name="fk_user_games_characters">
+        <columns>character_id</columns>
+        <ref-key>~.characters.PK_Characters</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+    </database-model>
+  </data-source>
+</component>
