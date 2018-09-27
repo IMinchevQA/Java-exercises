@@ -28,9 +28,11 @@ public class Ex02_Graph_DFS {
     public static void findGraphConnectedComponents() {
         visited = new boolean[graph.length];
         for (int node = 0; node < graph.length; node++) {
-            System.out.printf("Connected component:");
-            dfs(node);
-            System.out.println();
+            if(!visited[node]) {
+                System.out.printf("Connected component:");
+                dfs(node);
+                System.out.println();
+            }
         }
     }
 
